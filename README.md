@@ -1,6 +1,10 @@
 # buntnails.ch
 
-Modern, minimalist website for **Bunt Nails** in German.
+Website for **Bunt Nails** — professionelle Maniküre, Pediküre und Gel-Nageldesign in Zürich-Oerlikon.
+
+- **Adresse:** 175A Regensbergstrasse, 8050 Zürich
+- **E-Mail:** kontakt@buntnails.ch
+- **Domain:** buntnails.ch
 
 ## Stack
 
@@ -24,6 +28,14 @@ npm run build
 npm run preview
 ```
 
-## Deployment notes
+## Deployment
 
-The production build is configured with `base: "/"`, suitable for the root domain `buntnails.ch` on Vercel or GitHub Pages. Setmore booking opens at `https://buntnails.setmore.com/buntnails`; replace the `bookingUrl` constant in `src/App.tsx` if the final Setmore URL differs.
+Pushing to `main` triggers a GitHub Actions workflow (`.github/workflows/deploy.yml`) that builds the site and deploys to the `gh-pages` branch. GitHub Pages serves the site at `buntnails.ch`.
+
+The Setmore booking link is configured in `src/App.tsx` as:
+
+```ts
+const bookingUrl = "https://buntnails.setmore.com/buntnails";
+```
+
+Update this constant if the Setmore URL changes.
