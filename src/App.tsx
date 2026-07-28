@@ -5,7 +5,7 @@ import "./App.css";
 
 const bookingUrl = "https://buntnails.setmore.com/buntnails";
 const mapUrl =
-  "https://www.google.com/maps/search/?api=1&query=175A%20Regensbergstrasse%208050%20Z%C3%BCrich";
+  "https://www.google.com/maps/search/?api=1&query=175%20Regensbergstrasse%208050%20Z%C3%BCrich";
 
 type ExternalAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   href: string;
@@ -89,7 +89,7 @@ function Hero({ onOpenBooking }: { onOpenBooking: () => void }) {
     <section id="top" className="hero section-shell" aria-labelledby="hero-title">
       <div className="container hero-grid">
         <div className="hero-copy reveal">
-          <p className="eyebrow">Zürich-Oerlikon · Regensbergstrasse 175A</p>
+          <p className="eyebrow">Zürich-Oerlikon · Regensbergstrasse 175</p>
           <h1 id="hero-title" className="text-display font-display">
             Präzision &amp; Eleganz für Ihre Nägel.
           </h1>
@@ -286,7 +286,7 @@ function Contact() {
         <address>
           <h2 id="contact-title">Kontakt</h2>
           <p>
-            <ExternalAnchor href={mapUrl}>175A Regensbergstrasse, 8050 Zürich</ExternalAnchor>
+            <ExternalAnchor href={mapUrl}>175 Regensbergstrasse, 8050 Zürich</ExternalAnchor>
           </p>
           <p>
             <a href="mailto:kontakt@buntnails.ch">kontakt@buntnails.ch</a>
