@@ -4,6 +4,11 @@ import nasimSrc from "../images/nasim_sakkaki.png";
 import "./App.css";
 
 const bookingUrl = "https://buntnails.setmore.com/buntnails";
+const phoneNumber = "+41 76 298 09 41";
+const phoneHref = "tel:+41762980941";
+// Set to true to restore the Setmore booking section, modal, and CTAs.
+// See README → Online-Buchung.
+const ONLINE_BOOKING_ENABLED: boolean = false;
 const mapUrl =
   "https://www.google.com/maps/search/?api=1&query=175%20Regensbergstrasse%208050%20Z%C3%BCrich";
 
@@ -11,30 +16,123 @@ type ExternalAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   href: string;
 };
 
-type Service = {
-  title: string;
-  description: string;
-  note: string;
+type PriceItem = {
+  name: string;
+  price: string;
+  description?: string;
+  unit?: string;
 };
 
-const services: Service[] = [
+type PriceTone = "rose" | "lilac" | "sage" | "terracotta" | "mist" | "peach";
+
+type PriceCategory = {
+  title: string;
+  tone: PriceTone;
+  items: PriceItem[];
+};
+
+const priceList: PriceCategory[] = [
   {
     title: "Maniküre",
-    description:
-      "Pflege und Perfektion für Ihre Hände. Klassische Maniküre, Nagelpflege und individuelle Lackierung.",
-    note: "Für gepflegte Hände mit feinem Finish",
+    tone: "rose",
+    items: [
+      {
+        name: "Maniküre ohne Lack",
+        price: "CHF 30",
+        description:
+          "Handbad, Nägel kürzen und feilen, Nagelhautpflege, Handcreme und kurze Handmassage.",
+      },
+      {
+        name: "Maniküre mit Nagellack",
+        price: "CHF 40",
+        description: "Maniküre inklusive normalem Nagellack.",
+      },
+      { name: "Shellac", price: "CHF 50" },
+    ],
+  },
+  {
+    title: "Gel-Nägel",
+    tone: "lilac",
+    items: [
+      { name: "Neues Set mit kurzer Verlängerung mit Farbe", price: "CHF 75" },
+      { name: "Auffüllen mit Farbe", price: "CHF 65" },
+      { name: "Neues Set mit kurzer Verlängerung ohne Farbe", price: "CHF 60" },
+      { name: "Auffüllen ohne Farbe", price: "CHF 55" },
+      { name: "French", price: "+ CHF 5" },
+      { name: "Babyboomer", price: "+ CHF 10" },
+      { name: "Chrom", price: "+ CHF 10" },
+    ],
   },
   {
     title: "Pediküre",
-    description:
-      "Verwöhnende Fußpflege für Ihr Wohlbefinden. Präzises Feilen, Hornhautentfernung und pflegendes Finish.",
-    note: "Ruhig, sauber und wohltuend",
+    tone: "sage",
+    items: [
+      { name: "Classic Pediküre ohne Lack", price: "CHF 50" },
+      { name: "Classic Pediküre mit Nagellack", price: "CHF 60" },
+      { name: "Classic Pediküre mit Shellac", price: "CHF 80" },
+      {
+        name: "Bunt VIP – Apparative Pediküre mit Shellac",
+        price: "CHF 100",
+        description:
+          "Präzise Geräte-Pediküre, sorgfältige Nagel- und Nagelhautpflege sowie Bearbeitung verhornter Haut, inklusive Shellac.",
+      },
+      { name: "Zehenmodellage", price: "CHF 10", unit: "pro Nagel" },
+      { name: "Kürzen und feilen", price: "CHF 25" },
+    ],
   },
   {
-    title: "Nagel Gel",
-    description:
-      "Langanhaltende Eleganz und Verstärkung. Hochwertige Gel-Modellagen, Neuset, Refill und kreative Nail Art.",
-    note: "Haltbare Ästhetik nach Mass",
+    title: "Augenbrauen & Wimpern",
+    tone: "terracotta",
+    items: [
+      {
+        name: "Wimpernlifting mit Farbe",
+        price: "CHF 80",
+        description: "Inklusive Farbe und Formen der Augenbrauen.",
+      },
+      { name: "Wimpernlifting ohne Farbe", price: "CHF 60" },
+    ],
+  },
+  {
+    title: "Entfernen",
+    tone: "mist",
+    items: [
+      { name: "Shellac entfernen", price: "CHF 20" },
+      {
+        name: "Gel entfernen",
+        price: "CHF 30",
+        description: "Entfernen von Gel mit Glitzer oder aufwendigem Design.",
+      },
+    ],
+  },
+  {
+    title: "Extras",
+    tone: "peach",
+    items: [
+      {
+        name: "Nagelreparatur beim Auffüllen",
+        price: "CHF 3",
+        unit: "pro Nagel",
+      },
+      {
+        name: "Nagelreparatur als separate Behandlung",
+        price: "CHF 8",
+        unit: "pro Nagel",
+      },
+      { name: "Strassstein", price: "CHF 1", unit: "pro Stein" },
+      { name: "Muster (kleben)", price: "CHF 3", unit: "pro Nagel" },
+    ],
+  },
+  {
+    title: "Kinder – bis 12 Jahre",
+    tone: "rose",
+    items: [
+      { name: "Kinder-Maniküre mit Nagellack", price: "CHF 20" },
+      {
+        name: "Kinder-Pediküre mit Nagellack",
+        price: "CHF 20",
+        description: "Bei Bedarf etwas Handcreme.",
+      },
+    ],
   },
 ];
 
@@ -76,9 +174,15 @@ function Header() {
           <a href="#kontakt">Kontakt</a>
         </nav>
 
-        <ExternalAnchor href={bookingUrl} className="nav-cta">
-          Termin buchen
-        </ExternalAnchor>
+        {ONLINE_BOOKING_ENABLED ? (
+          <ExternalAnchor href={bookingUrl} className="nav-cta">
+            Termin buchen
+          </ExternalAnchor>
+        ) : (
+          <a href={phoneHref} className="nav-cta">
+            Termin per Telefon
+          </a>
+        )}
       </div>
     </header>
   );
@@ -94,18 +198,24 @@ function Hero({ onOpenBooking }: { onOpenBooking: () => void }) {
             Präzision &amp; Eleganz für Ihre Nägel.
           </h1>
           <p className="hero-subtitle">
-            Ihr exklusives Studio für professionelle Maniküre, Pediküre und
-            Gel-Nageldesign in Zürich-Oerlikon.
+            Ihr exklusives Studio für professionelle Maniküre, Pediküre, Gel-Nägel
+            und Beauty in Zürich-Oerlikon.
           </p>
 
           <div className="hero-actions">
-            <button
-              type="button"
-              className="button button-primary"
-              onClick={onOpenBooking}
-            >
-              Termin online buchen
-            </button>
+            {ONLINE_BOOKING_ENABLED ? (
+              <button
+                type="button"
+                className="button button-primary"
+                onClick={onOpenBooking}
+              >
+                Termin online buchen
+              </button>
+            ) : (
+              <a href={phoneHref} className="button button-primary">
+                Termin per Telefon
+              </a>
+            )}
             <a href="#leistungen" className="button button-ghost">
               Leistungen ansehen
             </a>
@@ -153,30 +263,68 @@ function Services() {
       <div className="container">
         <div className="section-heading reveal">
           <div>
-            <p className="eyebrow">Leistungen</p>
+            <p className="eyebrow">Leistungen &amp; Preise</p>
           </div>
           <div>
             <h2 id="services-title" className="text-editorial font-display">
               Ein Menü für gepflegte Hände, ruhige Schritte und haltbare Eleganz.
             </h2>
+            <p className="price-intro">
+              Alle Behandlungen und Preise auf einen Blick. Termine nach
+              Verfügbarkeit – telefonisch, per SMS oder E-Mail. Alle Preise in CHF.
+            </p>
           </div>
         </div>
 
-        <div className="service-menu reveal">
-          {services.map((service, index) => (
-            <article className="service-row" key={service.title}>
-              <span className="service-index" aria-hidden="true">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <div className="service-copy">
-                <h3>{service.title}</h3>
-                <p>{service.description}</p>
-              </div>
-              <ExternalAnchor href={bookingUrl} className="service-link">
-                {service.note}
-              </ExternalAnchor>
+        <div className="price-grid reveal">
+          {priceList.map((category) => (
+            <article
+              key={category.title}
+              className={`price-card tone-${category.tone}`}
+            >
+              <header className="price-card-head">
+                <span className="price-dot" aria-hidden="true" />
+                <h3>{category.title}</h3>
+              </header>
+
+              <ul className="price-items">
+                {category.items.map((item) => (
+                  <li className="price-item" key={item.name}>
+                    <div className="price-line">
+                      <span className="price-name">
+                        {item.name}
+                        {item.unit ? (
+                          <span className="price-unit">{item.unit}</span>
+                        ) : null}
+                      </span>
+                      <span className="price-leader" aria-hidden="true" />
+                      <span className="price-amount">{item.price}</span>
+                    </div>
+                    {item.description ? (
+                      <p className="price-description">{item.description}</p>
+                    ) : null}
+                  </li>
+                ))}
+              </ul>
             </article>
           ))}
+        </div>
+
+        <div className="price-notes reveal">
+          <div className="price-note">
+            <span>Termin</span>
+            <p>
+              Per Telefon oder SMS: <a href={phoneHref}>{phoneNumber}</a>
+            </p>
+          </div>
+          <div className="price-note">
+            <span>Hinweis</span>
+            <p>Nur kurze Nägel – keine langen Nägel.</p>
+          </div>
+          <div className="price-note">
+            <span>Bitte</span>
+            <p>Keine Hunde mitbringen. Vielen Dank für dein Verständnis!</p>
+          </div>
         </div>
       </div>
     </section>
@@ -238,6 +386,38 @@ function About() {
 }
 
 function Booking({ onOpenBooking }: { onOpenBooking: () => void }) {
+  if (!ONLINE_BOOKING_ENABLED) {
+    return (
+      <section id="booking" className="section" aria-labelledby="booking-title">
+        <div className="container">
+          <div className="booking-panel reveal">
+            <div>
+              <p className="eyebrow">Termin</p>
+              <h2 id="booking-title" className="text-editorial font-display">
+                Termine nach Verfügbarkeit – telefonisch, per SMS oder E-Mail.
+              </h2>
+              <p className="booking-copy">
+                Rufen Sie uns an, senden Sie eine SMS oder schreiben Sie eine
+                E-Mail. Wir melden uns mit einem passenden Termin.
+              </p>
+            </div>
+            <div className="booking-actions">
+              <a href={phoneHref} className="button button-primary">
+                {phoneNumber}
+              </a>
+              <a
+                href="mailto:kontakt@buntnails.ch"
+                className="button button-ghost"
+              >
+                E-Mail schreiben
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="booking" className="section" aria-labelledby="booking-title">
       <div className="container">
@@ -279,7 +459,7 @@ function Contact() {
             BUNT NAILS
           </a>
           <p className="footer-intro">
-            Professionelle Maniküre, Pediküre und Gel-Nageldesign in Zürich-Oerlikon.
+            Professionelle Maniküre, Pediküre, Gel-Nägel und Beauty in Zürich-Oerlikon.
           </p>
         </div>
 
@@ -287,6 +467,9 @@ function Contact() {
           <h2 id="contact-title">Kontakt</h2>
           <p>
             <ExternalAnchor href={mapUrl}>175 Regensbergstrasse, 8050 Zürich</ExternalAnchor>
+          </p>
+          <p>
+            <a href={phoneHref}>{phoneNumber}</a>
           </p>
           <p>
             <a href="mailto:kontakt@buntnails.ch">kontakt@buntnails.ch</a>
@@ -299,7 +482,11 @@ function Contact() {
         <div className="footer-notes">
           <a href="#leistungen">Leistungen</a>
           <a href="#ueber-team">Über das Team</a>
-          <ExternalAnchor href={bookingUrl}>Termin buchen</ExternalAnchor>
+          {ONLINE_BOOKING_ENABLED ? (
+            <ExternalAnchor href={bookingUrl}>Termin buchen</ExternalAnchor>
+          ) : (
+            <a href={phoneHref}>Termin per Telefon</a>
+          )}
         </div>
       </div>
 
@@ -458,10 +645,12 @@ export default function App() {
         <About />
         <Contact />
       </main>
-      <BookingModal
-        isOpen={bookingOpen}
-        onClose={() => setBookingOpen(false)}
-      />
+      {ONLINE_BOOKING_ENABLED ? (
+        <BookingModal
+          isOpen={bookingOpen}
+          onClose={() => setBookingOpen(false)}
+        />
+      ) : null}
     </>
   );
 }

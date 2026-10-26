@@ -276,7 +276,6 @@ svg {
 .hero-subtitle,
 .booking-copy,
 .footer-intro,
-.service-copy p,
 .about-copy p,
 .modal-fallback {
   color: rgb(43 39 35 / 0.78);
@@ -410,61 +409,173 @@ svg {
   color: var(--brand-ink);
 }
 
-.service-menu {
-  border-top: 1px solid rgb(116 114 69 / 0.42);
+.price-intro {
+  max-width: 720px;
+  margin: 1.15rem 0 0;
+  color: rgb(43 39 35 / 0.72);
+  font-size: clamp(1rem, 1.3vw, 1.08rem);
+  line-height: 1.7;
 }
 
-.service-row {
-  display: grid;
-  grid-template-columns: 4.8rem minmax(0, 1fr) auto;
-  gap: clamp(1rem, 3vw, 2rem);
+.price-grid {
+  column-count: 2;
+  column-gap: clamp(1.25rem, 3vw, 2rem);
+  margin-top: clamp(2.2rem, 5vw, 3.6rem);
+}
+
+.price-card {
+  --price-tone: var(--brand-accent-1);
+  display: inline-block;
+  width: 100%;
+  break-inside: avoid;
+  margin: 0 0 clamp(1.2rem, 2.5vw, 1.6rem);
+  border: 1px solid rgb(116 114 69 / 0.26);
+  border-radius: 1.5rem;
+  padding: clamp(1.25rem, 2.6vw, 1.8rem);
+  background: rgb(252 251 250 / 0.66);
+  vertical-align: top;
+}
+
+.price-card-head {
+  display: flex;
   align-items: center;
-  border-bottom: 1px solid rgb(116 114 69 / 0.28);
-  padding: clamp(1.35rem, 3vw, 2.1rem) 0;
+  gap: 0.7rem;
+  border-bottom: 1px solid rgb(116 114 69 / 0.24);
+  padding-bottom: 0.85rem;
 }
 
-.service-index {
-  color: var(--brand-accent-1);
-  font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: 1.35rem;
-  line-height: 1;
+.price-dot {
+  flex: none;
+  width: 0.62rem;
+  height: 0.62rem;
+  border-radius: 999px;
+  background: var(--price-tone);
 }
 
-.service-copy h3 {
-  margin: 0 0 0.45rem;
+.price-card-head h3 {
+  margin: 0;
   color: var(--brand-accent-2);
   font-family: "Cormorant Garamond", Georgia, serif;
-  font-size: clamp(1.7rem, 3.2vw, 3rem);
+  font-size: clamp(1.65rem, 2.6vw, 2.1rem);
   font-weight: 600;
   line-height: 1;
 }
 
-.service-copy p {
-  max-width: 680px;
+.price-items {
   margin: 0;
+  padding: 0.55rem 0 0;
+  list-style: none;
 }
 
-.service-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 42px;
-  border: 1px solid rgb(116 114 69 / 0.34);
-  border-radius: 999px;
-  padding: 0.7rem 1rem;
-  color: var(--brand-accent-2);
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.13em;
-  text-decoration: none;
-  text-transform: uppercase;
+.price-item {
+  padding: 0.5rem 0;
+}
+
+.price-line {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+}
+
+.price-name {
+  min-width: 0;
+  color: var(--brand-text);
+  font-size: 0.93rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.price-unit {
+  margin-left: 0.4rem;
+  color: rgb(43 39 35 / 0.5);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
   white-space: nowrap;
 }
 
-.service-link:hover {
-  border-color: var(--brand-accent-1);
-  background: rgb(220 157 96 / 0.12);
+.price-leader {
+  flex: 1 1 1.2rem;
+  min-width: 1.2rem;
+  border-bottom: 1px dotted rgb(116 114 69 / 0.38);
+  transform: translateY(-0.28em);
+}
+
+.price-amount {
   color: var(--brand-ink);
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.price-description {
+  margin: 0.28rem 0 0;
+  color: rgb(43 39 35 / 0.6);
+  font-size: 0.8rem;
+  line-height: 1.55;
+}
+
+.price-notes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  margin-top: clamp(1rem, 2.5vw, 1.8rem);
+  border: 1px solid rgb(116 114 69 / 0.24);
+  border-radius: 1.5rem;
+  background: rgb(116 114 69 / 0.18);
+}
+
+.price-note {
+  padding: clamp(1rem, 2.2vw, 1.4rem);
+  background: rgb(252 251 250 / 0.8);
+}
+
+.price-note span {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--brand-accent-2);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.price-note p {
+  margin: 0;
+  color: rgb(43 39 35 / 0.72);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.price-note a {
+  color: var(--brand-accent-2);
+  font-weight: 600;
+}
+
+.tone-rose {
+  --price-tone: #c98f86;
+}
+
+.tone-lilac {
+  --price-tone: #a08cb8;
+}
+
+.tone-sage {
+  --price-tone: #8a9a86;
+}
+
+.tone-terracotta {
+  --price-tone: #c8875a;
+}
+
+.tone-mist {
+  --price-tone: #7f98a8;
+}
+
+.tone-peach {
+  --price-tone: #d9a07c;
 }
 
 .section-canvas {
@@ -620,6 +731,10 @@ svg {
 .footer-notes a::after {
   content: " ↗";
   font-size: 0.8em;
+}
+
+.footer-notes a[href^="tel:"]::after {
+  content: "";
 }
 
 .legal-strip {
@@ -781,16 +896,17 @@ svg {
     gap: 1rem;
   }
 
-  .service-row {
-    grid-template-columns: 3.8rem minmax(0, 1fr);
-  }
-
-  .service-link {
-    grid-column: 2;
-    justify-self: start;
-  }
-
   .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 860px) {
+  .price-grid {
+    column-count: 1;
+  }
+
+  .price-notes {
     grid-template-columns: 1fr;
   }
 }

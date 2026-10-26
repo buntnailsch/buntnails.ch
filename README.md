@@ -1,8 +1,9 @@
 # buntnails.ch
 
-Website for **Bunt Nails** — professionelle Maniküre, Pediküre und Gel-Nageldesign in Zürich-Oerlikon.
+Website for **Bunt Nails** — professionelle Maniküre, Pediküre, Gel-Nägel und Beauty in Zürich-Oerlikon.
 
 - **Adresse:** 175 Regensbergstrasse, 8050 Zürich
+- **Telefon:** +41 76 298 09 41
 - **E-Mail:** kontakt@buntnails.ch
 - **Domain:** buntnails.ch
 
@@ -28,14 +29,18 @@ npm run build
 npm run preview
 ```
 
-## Deployment
+## Preisliste
 
-Pushing to `main` triggers a GitHub Actions workflow (`.github/workflows/deploy.yml`) that builds the site and deploys to the `gh-pages` branch. GitHub Pages serves the site at `buntnails.ch`.
+Die vollständige Preisliste ist im Abschnitt „Leistungen & Preise“ eingebunden. Die Druckversion liegt unter `data/preisliste/` und wird mit `node data/preisliste/build.js` neu erzeugt.
 
-The Setmore booking link is configured in `src/App.tsx` as:
+## Online-Buchung
+
+Die Setmore-Buchung ist derzeit deaktiviert; die Website verweist stattdessen auf Telefon und E-Mail. Zum Reaktivieren in `src/App.tsx` `ONLINE_BOOKING_ENABLED` auf `true` setzen. Header-CTA, Hero, Buchungsbereich und Modal werden dann automatisch wieder aktiviert. Der Buchungslink bleibt in `bookingUrl` konfiguriert:
 
 ```ts
 const bookingUrl = "https://buntnails.setmore.com/buntnails";
 ```
 
-Update this constant if the Setmore URL changes.
+## Deployment
+
+Pushing to `main` triggers a GitHub Actions workflow (`.github/workflows/deploy.yml`) that builds the site and deploys to the `gh-pages` branch. GitHub Pages serves the site at `buntnails.ch`.

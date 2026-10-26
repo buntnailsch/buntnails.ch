@@ -67,7 +67,7 @@
       [
         #text(weight: "semibold", fill: ink, tracking: 0.12em)[BUNT]
         #h(1.2mm)·#h(1.2mm)
-        Regensbergstrasse 175, 8050 Zürich
+        175 Regensbergstrasse, 8050 Zürich
       ],
       text(size: 6.1pt, fill: ink)[
         #counter(page).display() #h(0.35em) / #h(0.35em) #counter(page).final().first()
@@ -290,13 +290,3 @@
   #v(1.8mm)
   #text(size: 5.6pt, tracking: 0.24em, fill: taupe)[NAILS · PEDICURE · BEAUTY]
 ]
-
-
-
-
-
-
-
-
-
-
