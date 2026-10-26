@@ -2,7 +2,7 @@
 
 Website for **Bunt Nails** — professionelle Maniküre, Pediküre, Gel-Nägel und Beauty in Zürich-Oerlikon.
 
-- **Adresse:** 175 Regensbergstrasse, 8050 Zürich
+- **Adresse:** Regensbergstrasse 175, 8050 Zürich
 - **Telefon:** +41 76 298 09 41
 - **E-Mail:** kontakt@buntnails.ch
 - **Domain:** buntnails.ch

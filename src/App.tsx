@@ -10,7 +10,7 @@ const phoneHref = "tel:+41762980941";
 // See README → Online-Buchung.
 const ONLINE_BOOKING_ENABLED: boolean = false;
 const mapUrl =
-  "https://www.google.com/maps/search/?api=1&query=175%20Regensbergstrasse%208050%20Z%C3%BCrich";
+  "https://www.google.com/maps/search/?api=1&query=Regensbergstrasse%20175%208050%20Z%C3%BCrich";
 
 type ExternalAnchorProps = AnchorHTMLAttributes<HTMLAnchorElement> & {
   href: string;
@@ -466,7 +466,7 @@ function Contact() {
         <address>
           <h2 id="contact-title">Kontakt</h2>
           <p>
-            <ExternalAnchor href={mapUrl}>175 Regensbergstrasse, 8050 Zürich</ExternalAnchor>
+            <ExternalAnchor href={mapUrl}>Regensbergstrasse 175, 8050 Zürich</ExternalAnchor>
           </p>
           <p>
             <a href={phoneHref}>{phoneNumber}</a>
