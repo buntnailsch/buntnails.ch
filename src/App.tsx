@@ -9,9 +9,6 @@ const phoneHref = "tel:+41762980941";
 // Set to true to restore the Setmore booking section, modal, and CTAs.
 // See README → Online-Buchung.
 const ONLINE_BOOKING_ENABLED: boolean = false;
-// Set to false (or delete the OpeningEvent block) to remove the
-// opening-ceremony announcement again. See README → Eröffnung.
-const OPENING_EVENT_ENABLED: boolean = true;
 const mapUrl =
   "https://www.google.com/maps/search/?api=1&query=Regensbergstrasse%20175%208050%20Z%C3%BCrich";
 
@@ -172,9 +169,6 @@ function Header() {
         </a>
 
         <nav className="nav-links" aria-label="Hauptnavigation">
-          {OPENING_EVENT_ENABLED ? (
-            <a href="#eroeffnung">Eröffnung</a>
-          ) : null}
           <a href="#leistungen">Leistungen</a>
           <a href="#ueber-team">Über das Team</a>
           <a href="#kontakt">Kontakt</a>
@@ -257,58 +251,6 @@ function Hero({ onOpenBooking }: { onOpenBooking: () => void }) {
             <strong>Leise Präzision.</strong>
             <em>Handgefertigte Ästhetik für natürliche Eleganz.</em>
           </aside>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function OpeningEvent() {
-  return (
-    <section
-      id="eroeffnung"
-      className="section opening-event"
-      aria-labelledby="opening-title"
-    >
-      <div className="container">
-        <div className="opening-card reveal">
-          <p className="eyebrow">Save the Date · Eröffnung</p>
-          <h2 id="opening-title" className="text-editorial font-display">
-            Herzliche Einladung zur Eröffnung
-          </h2>
-          <p className="opening-copy">
-            Wir laden dich herzlich ein, mit uns auf diesen besonderen Tag
-            anzustoßen.
-          </p>
-
-          <dl className="opening-facts">
-            <div>
-              <dt>Datum</dt>
-              <dd>Sonntag, 08.11.2026</dd>
-            </div>
-            <div>
-              <dt>Zeit</dt>
-              <dd>15:00 – 17:00 Uhr</dd>
-            </div>
-            <div>
-              <dt>Ort</dt>
-              <dd>
-                <ExternalAnchor href={mapUrl}>
-                  Regensbergstrasse 175, 8050 Zürich
-                </ExternalAnchor>
-              </dd>
-            </div>
-          </dl>
-
-          <p className="opening-note">
-            Aperitif &amp; gemütliches Beisammensein – wir freuen uns sehr,
-            diesen besonderen Moment mit dir zu feiern. Schön, dass du dabei
-            bist!
-          </p>
-
-          <a href="#kontakt" className="button button-primary">
-            Anfahrt &amp; Kontakt
-          </a>
         </div>
       </div>
     </section>
@@ -698,7 +640,6 @@ export default function App() {
       <Header />
       <main id="main">
         <Hero onOpenBooking={() => setBookingOpen(true)} />
-        {OPENING_EVENT_ENABLED ? <OpeningEvent /> : null}
         <Services />
         <Booking onOpenBooking={() => setBookingOpen(true)} />
         <About />

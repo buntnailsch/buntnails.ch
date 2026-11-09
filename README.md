@@ -33,10 +33,6 @@ npm run preview
 
 Die vollständige Preisliste ist im Abschnitt „Leistungen & Preise“ eingebunden. Die Druckversion liegt unter `data/preisliste/` und wird mit `node data/preisliste/build.js` neu erzeugt.
 
-## Eröffnung
-
-Die Einladung zur Eröffnung (Sonntag, 08.11.2026, 15:00–17:00 Uhr) ist als eigener Abschnitt `#eroeffnung` zwischen Hero und Leistungen eingebunden und über ein Flag gesteuert. Zum Entfernen in `src/App.tsx` `OPENING_EVENT_ENABLED` auf `false` setzen – Abschnitt und Navigationslink verschwinden dann automatisch. Alternativ können die `OpeningEvent`-Komponente und der zugehörige CSS-Block gelöscht werden.
-
 ## Online-Buchung
 
 Die Setmore-Buchung ist derzeit deaktiviert; die Website verweist stattdessen auf Telefon und E-Mail. Zum Reaktivieren in `src/App.tsx` `ONLINE_BOOKING_ENABLED` auf `true` setzen. Header-CTA, Hero, Buchungsbereich und Modal werden dann automatisch wieder aktiviert. Der Buchungslink bleibt in `bookingUrl` konfiguriert:
