@@ -479,6 +479,25 @@ function Contact() {
           </p>
         </address>
 
+        <div className="footer-hours">
+          <h2>Öffnungszeiten</h2>
+          <dl>
+            <div>
+              <dt>Montag</dt>
+              <dd>16:00 – 20:00 Uhr</dd>
+            </div>
+            <div>
+              <dt>Dienstag</dt>
+              <dd>16:00 – 20:00 Uhr</dd>
+            </div>
+            <div>
+              <dt>Samstag</dt>
+              <dd>09:00 – 18:00 Uhr</dd>
+            </div>
+          </dl>
+          <p>Termine nach Vereinbarung.</p>
+        </div>
+
         <div className="footer-notes">
           <a href="#leistungen">Leistungen</a>
           <a href="#ueber-team">Über das Team</a>
