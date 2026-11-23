@@ -72,7 +72,7 @@
       text(size: 6.1pt, fill: ink)[
         #counter(page).display() #h(0.35em) / #h(0.35em) #counter(page).final().first()
       ],
-      align(right)[#text("kontakt@buntnails.ch") · +41 76 298 09 41],
+      align(right)[#text("kontakt@buntnails.ch") · +41 76 434 75 85],
     )
   },
 )
@@ -270,7 +270,7 @@
     row-gutter: 1.5mm,
     ..(
       (
-        "Terminvereinbarung per Telefon oder SMS: +41 76 298 09 41.",
+        "Terminvereinbarung per Telefon oder SMS: +41 76 434 75 85.",
         "Nur kurze Nägel – keine langen Nägel.",
         "Bitte keine Hunde mitbringen. Vielen Dank für dein Verständnis!",
       ).map(line => (

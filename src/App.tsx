@@ -4,8 +4,8 @@ import nasimSrc from "../images/nasim_sakkaki.png";
 import "./App.css";
 
 const bookingUrl = "https://buntnails.setmore.com/buntnails";
-const phoneNumber = "+41 76 298 09 41";
-const phoneHref = "tel:+41762980941";
+const phoneNumber = "+41 76 434 75 85";
+const phoneHref = "tel:+41764347585";
 // Set to true to restore the Setmore booking section, modal, and CTAs.
 // See README → Online-Buchung.
 const ONLINE_BOOKING_ENABLED: boolean = false;
