@@ -452,6 +452,12 @@ svg {
   background: var(--price-tone);
 }
 
+.price-card-title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.22rem;
+}
+
 .price-card-head h3 {
   margin: 0;
   color: var(--brand-accent-2);
@@ -459,6 +465,15 @@ svg {
   font-size: clamp(1.65rem, 2.6vw, 2.1rem);
   font-weight: 600;
   line-height: 1;
+}
+
+.price-card-subtitle {
+  margin: 0;
+  color: rgb(43 39 35 / 0.55);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
 .price-items {

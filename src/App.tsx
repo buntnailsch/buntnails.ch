@@ -27,6 +27,7 @@ type PriceTone = "rose" | "lilac" | "sage" | "terracotta" | "mist" | "peach";
 
 type PriceCategory = {
   title: string;
+  subtitle?: string;
   tone: PriceTone;
   items: PriceItem[];
 };
@@ -65,30 +66,23 @@ const priceList: PriceCategory[] = [
   },
   {
     title: "Pediküre",
+    subtitle: "Dry Pedicure",
     tone: "sage",
     items: [
-      { name: "Classic Pediküre ohne Lack", price: "CHF 50" },
-      { name: "Classic Pediküre mit Nagellack", price: "CHF 60" },
-      { name: "Classic Pediküre mit Shellac", price: "CHF 80" },
-      {
-        name: "Bunt VIP – Apparative Pediküre mit Shellac",
-        price: "CHF 100",
-        description:
-          "Präzise Geräte-Pediküre, sorgfältige Nagel- und Nagelhautpflege sowie Bearbeitung verhornter Haut, inklusive Shellac.",
-      },
+      { name: "Pediküre ohne Lack", price: "CHF 50" },
+      { name: "Pediküre mit Nagellack", price: "CHF 60" },
+      { name: "Pediküre mit Shellac", price: "CHF 80" },
+      { name: "Bunt VIP / Pediküre mit Shellac", price: "CHF 95" },
       { name: "Zehenmodellage", price: "CHF 10", unit: "pro Nagel" },
       { name: "Kürzen und feilen", price: "CHF 25" },
+      { name: "Shellac", price: "CHF 50" },
     ],
   },
   {
-    title: "Augenbrauen & Wimpern",
+    title: "Wimpern",
     tone: "terracotta",
     items: [
-      {
-        name: "Wimpernlifting mit Farbe",
-        price: "CHF 80",
-        description: "Inklusive Farbe und Formen der Augenbrauen.",
-      },
+      { name: "Wimpernlifting mit Farbe", price: "CHF 80" },
       { name: "Wimpernlifting ohne Farbe", price: "CHF 60" },
     ],
   },
@@ -119,7 +113,7 @@ const priceList: PriceCategory[] = [
         unit: "pro Nagel",
       },
       { name: "Strassstein", price: "CHF 1", unit: "pro Stein" },
-      { name: "Muster (kleben)", price: "CHF 3", unit: "pro Nagel" },
+      { name: "Muster (Kleben)", price: "CHF 3", unit: "pro Nagel" },
     ],
   },
   {
@@ -127,11 +121,7 @@ const priceList: PriceCategory[] = [
     tone: "rose",
     items: [
       { name: "Kinder-Maniküre mit Nagellack", price: "CHF 20" },
-      {
-        name: "Kinder-Pediküre mit Nagellack",
-        price: "CHF 20",
-        description: "Bei Bedarf etwas Handcreme.",
-      },
+      { name: "Kinder-Pediküre mit Nagellack", price: "CHF 20" },
     ],
   },
 ];
@@ -284,7 +274,12 @@ function Services() {
             >
               <header className="price-card-head">
                 <span className="price-dot" aria-hidden="true" />
-                <h3>{category.title}</h3>
+                <div className="price-card-title">
+                  <h3>{category.title}</h3>
+                  {category.subtitle ? (
+                    <p className="price-card-subtitle">{category.subtitle}</p>
+                  ) : null}
+                </div>
               </header>
 
               <ul className="price-items">
